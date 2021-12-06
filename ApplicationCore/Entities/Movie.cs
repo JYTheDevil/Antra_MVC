@@ -27,5 +27,7 @@ namespace ApplicationCore.Entities
         public string UpdatedBy { get; set; }
         public string CreatedBy { get; set; }
 
+        public List<Trailer> Trailers { get; set; }
+
     }
 }

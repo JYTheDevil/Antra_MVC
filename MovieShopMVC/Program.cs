@@ -14,13 +14,15 @@ builder.Services.AddControllersWithViews();
 
 // Services Injection
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 
 // Repositories Injection
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 
 // inject the connection string into the MovieShopSbContext constructor using DbContextOptions
 builder.Services.AddDbContext<MovieShopDbContext>(
-    options=> options.UseSqlServer( builder.Configuration.GetConnectionString("MovieShopDbConnection") )
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("MovieShopDbConnection"))
     );
 
 

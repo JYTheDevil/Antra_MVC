@@ -1,9 +1,7 @@
 ﻿@model ApplicationCore.Models.MovieDetailsResponseModel
 
 
-<html>
-<head>
-     <style>
+    <style>
           .special-row {
                height: 300px;
                margin:auto;
@@ -11,8 +9,7 @@
                background-position: center;
                position: relative;
           }
-     </style>
-</head>
+    </style>
     <div class=-moz-text-size-adjustainer">
          <div class="row special-row" style="background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('@Model.BackdropUrl') no-repeat">
               <div class="col-4" style="text-align:center">
@@ -24,7 +21,7 @@
                    <h3 style="color:white">@Model.Title</h3> 
                    <p style="color:gray; font-size:10px">@Model.Tagline</p>
                    <p style="color:gray; font-size:12px">
-                        <b>@Model.RunTime | @Model.ReleaseDate </b> &nbsp; &nbsp;
+                        @*<b> |  </b> &nbsp; &nbsp;*@
                         <span class="badge rounded-pill bg-secondary">Adventure</span>
                         <span class="badge rounded-pill bg-secondary">Action</span>
                         <span class="badge rounded-pill bg-secondary">Science Fiction</span>
@@ -49,16 +46,16 @@
               <div class="col-4">
                    <ul class="list-group list-group-flush">
                         <li class="list-group-item bg-light"><h5>MOVIE FACTS</h5></li>
-                        <li class="list-group-item border-bottom-2 bg-light">
+                        <li class="list-group-item  ">
                            <i class="far fa-calendar-alt"></i> Release Date <span class="badge badge-pill bg-dark">@Model.ReleaseDate</span>
                         </li>
-                        <li class="list-group-item border-bottom-2 bg-light">
+                        <li class="list-group-item  ">
                            <i class="fas fa-hourglass-half"></i>  Run Time <span class="badge badge-pill bg-dark">@Model.RunTime m</span>
                         </li>
-                        <li class="list-group-item border-bottom-2 bg-light">
+                        <li class="list-group-item ">
                            <i class="far fa-money-bill-alt"></i> Box Office <span class="badge badge-pill bg-dark">$@Model.Revenue</span>
                         </li>
-                        <li class="list-group-item border-bottom-2 bg-light">
+                        <li class="list-group-item  ">
                            <i class="fas fa-dollar-sign"></i>  Budget <span class="badge badge-pill bg-dark">$@Model.Budget</span>
                         </li>
                    </ul>
@@ -82,7 +79,7 @@
           
               <div class="col">
                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><h5>CAST</h5></li>
+                        <li class="list-group-item bg-light"><h5>CAST</h5></li>
                         <li class="list-group-item">    
                              <ul class="list-group list-group-horizontal list-group-flush">
                                  @*@foreach(var cast in Model.Casts){
@@ -99,4 +96,3 @@
          </div>
     </div>
 
-</html>

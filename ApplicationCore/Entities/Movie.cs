@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace ApplicationCore.Entities
 {
     public class Movie
@@ -27,7 +27,17 @@ namespace ApplicationCore.Entities
         public string? UpdatedBy { get; set; }
         public string? CreatedBy { get; set; }
 
+        // I need rating property for my business/ui logic but i dont want rating as column in the table
+
+        [NotMapped]
+        public decimal? Rating { get; set; }
         public List<Trailer> Trailers { get; set; }
+        public List<Favorite> Favorites { get; set; }
+        public List<Purchase> Purchases { get; set; }
+        public List<MovieGenre> GenresOfMovie { get; set; }
+        public List<Review> Reviews { get; set; }
+        public List<MovieCast> MoviesCasts { get; set; }
+        public List<MovieCrew> MovieCrews { get; set; }
 
     }
 }

@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MovieShopMVC.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/567dc12732.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
+@*    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MovieShopMVC</a>
@@ -29,8 +30,40 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
+    </header>*@
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">MovieShopMVC
+            <i class="fa fa-film"></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto bg-dark">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    GENRES
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+
+              </ul>
+              
+            </div>
+            <div class="d-flex">
+                  <button type="button" class="btn btn-outline-light" style="margin-right: 5px; border-radius: 18px;">Log in</button>
+                  <button type="button" class="btn btn-outline-light" style="border-radius: 18px;">Register</button>
+              </div> 
+          </nav>
+    </div>
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

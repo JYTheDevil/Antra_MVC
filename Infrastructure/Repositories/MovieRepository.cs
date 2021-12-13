@@ -16,13 +16,13 @@ namespace Infrastructure.Repositories
         {
 
         }
-        public IEnumerable<Movie> Get30HighestGrossingMovies()
+        public async Task<IEnumerable<Movie>> Get30HighestGrossingMovies()
         {
             // we need to go to database and get the movies using ADO.NET Dapper or EF Core
 
             // access the dbcontext object and dbset of movies object to query the movies table
             // 
-            var movies = _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToList();
+            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
             return movies;
         }
         //public IEnumerable<Movie> Get30HighestGrossingMovies()
@@ -41,19 +41,19 @@ namespace Infrastructure.Repositories
         //    return movies;
         //}
 
-        public override Movie GetById(int id)
+        public async Task<Movie> GetById(int id)
         {
             // call the Movie dbset and also include the navigation properties such as 
             // Genres, Trailers, cast 
             // Include method in EF will help us navigate to related tables and get data
-            var movieDetails = _dbContext.Movies.Include(m => m.MoviesCasts).ThenInclude(m => m.Cast)
+            var movieDetails = await _dbContext.Movies.Include(m => m.MoviesCasts).ThenInclude(m => m.Cast)
                  .Include(m => m.GenresOfMovie).ThenInclude(m => m.Genre).Include(m => m.Trailers)
-                 .FirstOrDefault(m => m.Id == id);
+                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (movieDetails == null) return null;
 
-            var rating = _dbContext.Reviews.Where(r => r.MovieId == id).DefaultIfEmpty()
-                 .Average(r => r == null ? 0 : r.Rating);
+            var rating = await _dbContext.Reviews.Where(r => r.MovieId == id).DefaultIfEmpty()
+                 .AverageAsync(r => r == null ? 0 : r.Rating);
             movieDetails.Rating = rating;
             return movieDetails;
         }

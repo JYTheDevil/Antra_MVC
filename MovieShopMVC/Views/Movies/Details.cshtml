@@ -42,21 +42,24 @@
                    </p>
               </div>
          </div>
+
          <div class="row">
               <div class="col-4">
                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-light"><h5>MOVIE FACTS</h5></li>
-                        <li class="list-group-item  ">
-                           <i class="far fa-calendar-alt"></i> Release Date <span class="badge badge-pill bg-dark">@Model.ReleaseDate</span>
+                        <li class="list-group-item bg-light">
+                            <h5>MOVIE FACTS</h5>
                         </li>
                         <li class="list-group-item  ">
-                           <i class="fas fa-hourglass-half"></i>  Run Time <span class="badge badge-pill bg-dark">@Model.RunTime m</span>
+                           <i class="far fa-calendar-alt"></i> Release Date @Model.ReleaseDate
+                        </li>
+                        <li class="list-group-item  ">
+                           <i class="fas fa-hourglass-half"></i>  Run Time @Model.RunTime m
                         </li>
                         <li class="list-group-item ">
-                           <i class="far fa-money-bill-alt"></i> Box Office <span class="badge badge-pill bg-dark">$@Model.Revenue</span>
+                           <i class="far fa-money-bill-alt"></i> Box Office $@Model.Revenue
                         </li>
                         <li class="list-group-item  ">
-                           <i class="fas fa-dollar-sign"></i>  Budget <span class="badge badge-pill bg-dark">$@Model.Budget</span>
+                           <i class="fas fa-dollar-sign"></i>  Budget $@Model.Budget
                         </li>
                    </ul>
                    <br/>
@@ -79,16 +82,18 @@
           
               <div class="col">
                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-light"><h5>CAST</h5></li>
+                        <li class="list-group-item bg-light">
+                            <h5>CAST</h5>
+                        </li>
                         <li class="list-group-item">    
                              <ul class="list-group list-group-horizontal list-group-flush">
-                                 @*@foreach(var cast in Model.Casts){
+                                 @foreach(var cast in Model.Casts){
                                   <li class="list-group-item border-0" style="width: 20%">
                                        <img src = "@cast.PosterUrl" class="rounded-circle" style="width:40%; margin-right: 30px"/>
                                   </li>
                                   <li class="list-group-item border-0" style="width: 40%">@cast.Name</li>
-                                  <li class="list-group-item border-0"">@cast.Character</li>
-                                 } *@
+                                  <li class="list-group-item border-0">@cast.Character</li>
+                                 } 
                              </ul>
                         </li>                   
                    </ul>

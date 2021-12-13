@@ -19,10 +19,10 @@ namespace MovieShopMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // Call movie service to get list of movie cards to show in the index view
-            var movieCards = _movieService.GetHighestGrossingMovies();
+            var movieCards = await _movieService.GetHighestGrossingMovies();
 
             // 3 ways to pass data/models from controller action methods to view
             // 1. Pass the models in the view method (Most important)
@@ -39,30 +39,30 @@ namespace MovieShopMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult TopMovies()
+        public async Task<IActionResult> TopMovies()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
             return View();
         }
         [HttpGet]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

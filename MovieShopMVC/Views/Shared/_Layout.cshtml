@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject ApplicationCore.ServiceInterfaces.IGenreService _genreService;
+@{
+    var model = await _genreService.GetAllGenres();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,28 +13,7 @@
     <link rel="stylesheet" href="~/MovieShopMVC.styles.css" asp-append-version="true" />
     <script src="https://kit.fontawesome.com/567dc12732.js" crossorigin="anonymous"></script>
 </head>
-<body>
-@*    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MovieShopMVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>*@
+<body>  
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">MovieShopMVC
@@ -47,23 +30,21 @@
                     GENRES
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @*@(await Component.InvokeAsync("Genres"))*@
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </li>
-
+                <partial name="_LoginInfoPartial"/>
               </ul>
               
             </div>
-            <div class="d-flex">
-                  <button type="button" class="btn btn-outline-light" style="margin-right: 5px; border-radius: 18px;">Log in</button>
-                  <button type="button" class="btn btn-outline-light" style="border-radius: 18px;">Register</button>
-              </div> 
           </nav>
     </div>
-    <div>
+    
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

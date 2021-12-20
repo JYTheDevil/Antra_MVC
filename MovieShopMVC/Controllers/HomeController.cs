@@ -11,11 +11,13 @@ namespace MovieShopMVC.Controllers
     {
         // C# readonly
         private readonly IMovieService _movieService;
+        private readonly ILogger<HomeController> _logger;
 
         // need to tell MVC MovieService class needs to be "injected"
-        public HomeController(IMovieService movieService)
+        public HomeController(IMovieService movieService, ILogger<HomeController> logger)
         {
             _movieService = movieService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -38,11 +40,11 @@ namespace MovieShopMVC.Controllers
             return View(movieCards);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Privacy()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Privacy()
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public async Task<IActionResult> TopMovies()
@@ -50,16 +52,16 @@ namespace MovieShopMVC.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Login()
-        {
-            return View();
-        }
-        [HttpGet]
-        public async Task<IActionResult> Register()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Login()
+        //{
+        //    return View();
+        //}
+        //[HttpGet]
+        //public async Task<IActionResult> Register()
+        //{
+        //    return View();
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Error()

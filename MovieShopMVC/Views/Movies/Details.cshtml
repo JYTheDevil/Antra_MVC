@@ -21,13 +21,13 @@
                    <h3 style="color:white">@Model.Title</h3> 
                    <p style="color:gray; font-size:10px">@Model.Tagline</p>
                    <p style="color:gray; font-size:12px">
-                        @*<b> |  </b> &nbsp; &nbsp;*@
-                        <span class="badge rounded-pill bg-secondary">Adventure</span>
-                        <span class="badge rounded-pill bg-secondary">Action</span>
-                        <span class="badge rounded-pill bg-secondary">Science Fiction</span>
+                        <b>@Model.RunTime m | @Model.ReleaseDate </b> &nbsp; &nbsp;
+                        @foreach (var genre in @Model.Genres) {
+                         <span class="badge rounded-pill bg-secondary">@genre.Name</span>
+                        }
                    </p>
                    <p>
-                        <span class="badge bg-success">@Model.Rating</badge>
+                        <span class="badge bg-success">@Math.Round((decimal)@Model.Rating,1)</badge>
                    </p>
                    <p style="color:white; font-size:12px">
                         @Model.Overview
@@ -81,23 +81,22 @@
          
           
               <div class="col">
-                   <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-light">
-                            <h5>CAST</h5>
-                        </li>
-                        <li class="list-group-item">    
-                             <ul class="list-group list-group-horizontal list-group-flush">
-                                 @foreach(var cast in Model.Casts){
-                                  <li class="list-group-item border-0" style="width: 20%">
-                                       <img src = "@cast.PosterUrl" class="rounded-circle" style="width:40%; margin-right: 30px"/>
-                                  </li>
-                                  <li class="list-group-item border-0" style="width: 40%">@cast.Name</li>
-                                  <li class="list-group-item border-0">@cast.Character</li>
-                                 } 
-                             </ul>
-                        </li>                   
-                   </ul>
-              </div>
+               <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h5>CAST</h5></li>
+                    @foreach (var Cast in Model.Casts)
+                    {
+                         <li class="list-group-item">
+                              <ul class="list-group list-group-horizontal list-group-flush">
+                                   <li class="list-group-item border-0" style="width: 20%">
+                                        <img src = "@Cast.PosterUrl" class="rounded-circle" style="width:40%; margin-right: 30px" />
+                                   </li>
+                                   <li class="list-group-item border-0" style="width: 40%">@Cast.Name</li>
+                                   <li class="list-group-item border-0">@Cast.Character</li>
+                              </ul>
+                         </li>
+                    }
+               </ul>
+          </div>
          </div>
     </div>
 

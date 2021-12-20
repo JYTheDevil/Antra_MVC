@@ -20,5 +20,41 @@ namespace Infrastructure.Repositories
             var user = await _dbContext.User.FirstOrDefaultAsync(x => x.Email == email);
             return user;
         }
+        public async Task<User> EditUser(User user)
+        {
+            var _user = (from u in _dbContext.User
+                         where u.Id == user.Id
+                         select u).FirstOrDefault();
+            if (user.DateOfBirth != null)
+                _user.DateOfBirth = user.DateOfBirth;
+            if (user.PhoneNumber != null)
+                _user.PhoneNumber = user.PhoneNumber;
+            if (user.Email != null)
+                _user.Email = user.Email;
+            await _dbContext.SaveChangesAsync();
+
+            return _user;
+        }
+        public async Task<IEnumerable<Movie>> GetFavoritedMovies(int Id)
+        {
+            var movies = await _dbContext.Movies.Where(
+                 x => _dbContext.Favorite.Where(f => f.UserId == Id).Select(f => f.MovieId).Contains(x.Id))
+                 .ToListAsync();
+            return movies;
+        }
+        public async Task<IEnumerable<Movie>> GetPurchasedMovies(int Id)
+        {
+            var movies = await _dbContext.Movies.Where(
+                 x => _dbContext.Purchase.Where(f => f.UserId == Id).Select(f => f.MovieId).Contains(x.Id))
+                 .ToListAsync();
+
+            foreach (var movie in movies)
+            {
+                var purchase = await _dbContext.Purchase.Where(p => p.MovieId == movie.Id && p.UserId == Id)
+                     .FirstOrDefaultAsync();
+                //movie.Purchases.Add(purchase);
+            }
+            return movies;
+        }
     }
 }

@@ -50,7 +50,34 @@ namespace Infrastructure.Services
 
         public async Task<UserLoginResponseModel> ValidateUser(LoginRequestModel model)
         {
-            throw new NotImplementedException();
+            // check if the hashed password is correct
+            // get the data for that user's email
+            var user = await _userRepository.GetUserByEmail(model.Email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            // hash the password the user entered with the salt from the database
+
+            var hashedPassword = GetHashedPassword(model.Password, user.Salt);
+
+            // compare the newly created hashpassword with database password
+
+            if (hashedPassword == user.HashedPassword)
+            {
+                // correct password
+                var userLoginResponseModel = new UserLoginResponseModel
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    DateOfBirth = user.DateOfBirth,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName
+                };
+                return userLoginResponseModel;
+            }
+            return null;
         }
 
 
